@@ -1,16 +1,20 @@
-/* eslint no-console: 0 */
-// Run this example by adding <%= javascript_pack_tag 'hello_vue' %> (and
-// <%= stylesheet_pack_tag 'hello_vue' %> if you have styles in your component)
-// to the head of your layout file,
-// like app/views/layouts/application.html.erb.
-// All it does is render <div>Hello Vue</div> at the bottom of the page.
+import { createApp } from "vue";
+import App from "../app.vue";
+import PrimeVue from "primevue/config";
+import InputText from "primevue/inputtext";
+import Toast from "primevue/toast";
+import Button from "primevue/button";
 
-import App from '../app.vue'
-import * as Vue from 'vue'
+document.addEventListener("DOMContentLoaded", () => {
+  const app = createApp(App);
+  app.use(PrimeVue);
 
-document.addEventListener('DOMContentLoaded', () => {
-  Vue.createApp(App).mount('#app');
-})
+  app.component("InputText", InputText);
+  app.component("Toast", Toast);
+  app.component("Button", Button);
+
+  app.mount("#app");
+});
 
 // The above code uses Vue without the compiler, which means you cannot
 // use Vue to target elements in your existing html templates. You would
@@ -24,7 +28,6 @@ document.addEventListener('DOMContentLoaded', () => {
 //   {{message}}
 //   <app></app>
 // </div>
-
 
 // import Vue from 'vue/dist/vue.esm'
 // import App from '../app.vue'
