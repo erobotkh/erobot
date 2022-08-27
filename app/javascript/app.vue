@@ -1,10 +1,7 @@
 <template>
   <div id="app">
+    <EMenubar></EMenubar>
     <p>{{ message }}</p>
-    <InputText type="text" placeholder="Default"></InputText>
-
-    <Toast />
-    <Button @click="showToast('info')" label="Info" class="p-button-info mr-2 mb-2" />
   </div>
 </template>
 
@@ -12,10 +9,10 @@
 export default {
   data: function () {
     return {
-      message: "Hello Vue!"
-    }
-  }
-}
+      message: "Hello Vue!",
+    };
+  },
+};
 </script>
 
 <style scoped>
