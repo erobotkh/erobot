@@ -1,7 +1,13 @@
 Rails.application.routes.draw do
-  get 'landing/index'
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  use_doorkeeper do
+    skip_controllers :authorizations, :applications, :authorized_applications
+  end
 
-  # Defines the root path route ("/")
+  namespace :api do
+    resources :users, only: %i[create]
+    resources :bookmarks, only: %i[index]
+  end
+  
+  get 'landing/index'
   root 'landing#index'
 end

@@ -51,6 +51,10 @@ gem "bootsnap", require: false
 # Webpacker
 gem "webpacker"
 
+# Authentication
+gem 'doorkeeper'
+gem 'devise'
+
 # Initiating multiple processes at the same time. eg. run vue & rails
 gem 'foreman'
 
