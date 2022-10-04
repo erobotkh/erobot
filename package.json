@@ -1,4 +1,9 @@
 {
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/erobotkh/erobot-be"
+  },
+  "license": "MIT",
   "dependencies": {
     "@rails/webpacker": "5.4.3",
     "install": "^0.13.0",
@@ -12,5 +17,8 @@
   },
   "devDependencies": {
     "webpack-dev-server": "^3"
+  },
+  "engines": {
+    "node": "14.X"
   }
 }
