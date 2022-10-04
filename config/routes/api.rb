@@ -3,6 +3,8 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :users, only: %i[create]
       resources :taxonomies, only: %i[index show]
+      resources :taxons, only: %i[index show]
+      resources :posts, only: %i[index show]
     end
   end
 end

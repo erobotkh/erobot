@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_28_043224) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_04_161809) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -56,6 +56,37 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_28_043224) do
     t.index ["uid"], name: "index_oauth_applications_on_uid", unique: true
   end
 
+  create_table "posts", force: :cascade do |t|
+    t.string "title"
+    t.text "plain_body"
+    t.text "rich_body"
+    t.bigint "taxon_id", null: false
+    t.bigint "taxonomy_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["taxon_id"], name: "index_posts_on_taxon_id"
+    t.index ["taxonomy_id"], name: "index_posts_on_taxonomy_id"
+  end
+
+  create_table "taxonomies", force: :cascade do |t|
+    t.string "name"
+    t.string "taxonomy_type"
+    t.integer "position"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "taxons", force: :cascade do |t|
+    t.string "name"
+    t.integer "position"
+    t.integer "parent_id"
+    t.bigint "taxonomy_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["parent_id"], name: "index_taxons_on_parent_id"
+    t.index ["taxonomy_id"], name: "index_taxons_on_taxonomy_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -75,4 +106,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_28_043224) do
 
   add_foreign_key "oauth_access_grants", "oauth_applications", column: "application_id"
   add_foreign_key "oauth_access_tokens", "oauth_applications", column: "application_id"
+  add_foreign_key "posts", "taxonomies"
+  add_foreign_key "posts", "taxons"
+  add_foreign_key "taxons", "taxonomies"
 end
