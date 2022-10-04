@@ -7,6 +7,10 @@ module Api
       def current_user
         @current_user ||= User.find_by(id: doorkeeper_token[:resource_owner_id])
       end
+
+      def page
+        params[:page] || 1
+      end
     end
   end
 end  
