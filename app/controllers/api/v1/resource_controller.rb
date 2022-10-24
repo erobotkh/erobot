@@ -1,7 +1,9 @@
+# Credit to @SPREE_API
 module Api
   module V1
     class ResourceController < Api::V1::ApplicationController
       include Api::V1::CollectionOptionsHelpers
+      include Api::V1::RequestIncludesHelpers
       
       # resource
       def show

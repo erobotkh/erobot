@@ -21,7 +21,7 @@ module Api
 
       # TODO: support :format, :page, :per_page, :sort, :include, :fields, filter: {}
       def collection_permitted_params
-        params.permit(:format, :page, :per_page)
+        params.permit(:format, :page, :per_page, :include)
       end
 
       private
@@ -34,6 +34,7 @@ module Api
         {
           links: collection_links(collection),
           meta: collection_meta(collection),
+          include: resource_includes,
         }
       end
     end
