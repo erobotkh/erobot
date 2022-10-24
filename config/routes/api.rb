@@ -5,6 +5,7 @@ Rails.application.routes.draw do
       resources :taxonomies, only: %i[index show]
       resources :taxons, only: %i[index show]
       resources :posts, only: %i[index show]
+      resources :comments, only: %i[index]
     end
   end
 end
