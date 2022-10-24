@@ -1,24 +1,10 @@
-# README
+# E-Robot
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Administrate
+For v1 admin, we use [administrate](https://administrate-demo-prerelease.herokuapp.com/getting_started) which will generate neccessary model CRUD to view. 
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+- Demo: http://127.0.0.1:3000/admin
+- To generate, execute command below:
+```s
+bin/srails generate administrate:install
+```
