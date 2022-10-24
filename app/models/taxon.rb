@@ -1,8 +1,6 @@
 class Taxon < ApplicationRecord
-  belongs_to :parent
-  belongs_to :taxonomy
-  belongs_to :parent, class_name: :Taxon, optional: true
-
-  has_many :taxons, foreign_key: :parent_id
-  has_many :posts
+  belongs_to :taxonomy, inverse_of: :taxons
+  
+  has_many :classifications, dependent: :delete_all, inverse_of: :taxon
+  has_many :posts, through: :classifications
 end

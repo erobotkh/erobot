@@ -7,5 +7,6 @@ class CreateTaxonomies < ActiveRecord::Migration[7.0]
 
       t.timestamps
     end
+    add_index :taxonomies, [:name, :taxonomy_type], :unique => true
   end
 end

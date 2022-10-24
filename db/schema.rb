@@ -10,9 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_04_161809) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_24_164130) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "classifications", force: :cascade do |t|
+    t.integer "post_id"
+    t.integer "taxon_id"
+    t.integer "position"
+    t.json "preference"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "oauth_access_grants", force: :cascade do |t|
     t.bigint "resource_owner_id", null: false
@@ -60,12 +69,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_04_161809) do
     t.string "title"
     t.text "plain_body"
     t.text "rich_body"
-    t.bigint "taxon_id", null: false
-    t.bigint "taxonomy_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["taxon_id"], name: "index_posts_on_taxon_id"
-    t.index ["taxonomy_id"], name: "index_posts_on_taxonomy_id"
   end
 
   create_table "taxonomies", force: :cascade do |t|
@@ -74,6 +79,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_04_161809) do
     t.integer "position"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["name", "taxonomy_type"], name: "index_taxonomies_on_name_and_taxonomy_type", unique: true
   end
 
   create_table "taxons", force: :cascade do |t|
@@ -83,6 +89,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_04_161809) do
     t.bigint "taxonomy_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["name", "taxonomy_id"], name: "index_taxons_on_name_and_taxonomy_id", unique: true
     t.index ["parent_id"], name: "index_taxons_on_parent_id"
     t.index ["taxonomy_id"], name: "index_taxons_on_taxonomy_id"
   end
@@ -106,7 +113,5 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_04_161809) do
 
   add_foreign_key "oauth_access_grants", "oauth_applications", column: "application_id"
   add_foreign_key "oauth_access_tokens", "oauth_applications", column: "application_id"
-  add_foreign_key "posts", "taxonomies"
-  add_foreign_key "posts", "taxons"
   add_foreign_key "taxons", "taxonomies"
 end
