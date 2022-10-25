@@ -69,6 +69,7 @@ gem 'acts_as_list'
 
 # Basic admin
 gem "administrate"
+gem 'administrate-field-simple_markdown'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem

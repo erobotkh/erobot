@@ -9,7 +9,11 @@ class CommentDashboard < Administrate::BaseDashboard
   # on pages throughout the dashboard.
   ATTRIBUTE_TYPES = {
     id: Field::Number,
-    commentable: Field::Polymorphic,
+    commentable: Field::Polymorphic.with_options( 
+      classes: [
+        Post
+      ]
+    ),
     message: Field::String,
     user: Field::BelongsTo,
     created_at: Field::DateTime,
@@ -26,6 +30,8 @@ class CommentDashboard < Administrate::BaseDashboard
     commentable
     message
     user
+    created_at
+    updated_at
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES

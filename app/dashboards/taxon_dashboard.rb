@@ -26,9 +26,11 @@ class TaxonDashboard < Administrate::BaseDashboard
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = %i[
     id
-    classifications
     name
     parent_id
+    position
+    created_at
+    updated_at
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES

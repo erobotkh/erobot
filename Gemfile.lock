@@ -78,6 +78,11 @@ GEM
       kaminari (>= 1.0)
       sassc-rails (~> 2.1)
       selectize-rails (~> 0.6)
+    administrate-field-simple_markdown (0.7.0)
+      administrate (< 1.0.0)
+      rack (~> 2.0, >= 2.0.8)
+      rails (>= 4.2, < 8)
+      redcarpet (~> 3.3)
     bcrypt (3.1.18)
     bindex (0.8.1)
     bootsnap (1.13.0)
@@ -215,6 +220,7 @@ GEM
       thor (~> 1.0)
       zeitwerk (~> 2.5)
     rake (13.0.6)
+    redcarpet (3.5.1)
     redis (4.8.0)
     regexp_parser (2.5.0)
     reline (0.3.1)
@@ -306,6 +312,7 @@ PLATFORMS
 DEPENDENCIES
   acts_as_list
   administrate
+  administrate-field-simple_markdown
   bootsnap
   capybara
   debug

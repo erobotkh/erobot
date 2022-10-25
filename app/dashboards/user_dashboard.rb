@@ -13,7 +13,7 @@ class UserDashboard < Administrate::BaseDashboard
     current_sign_in_at: Field::DateTime,
     current_sign_in_ip: Field::String,
     email: Field::String,
-    encrypted_password: Field::String,
+    password: Field::Password,
     last_sign_in_at: Field::DateTime,
     last_sign_in_ip: Field::String,
     remember_created_at: Field::DateTime,
@@ -32,8 +32,10 @@ class UserDashboard < Administrate::BaseDashboard
   COLLECTION_ATTRIBUTES = %i[
     id
     comments
-    current_sign_in_at
-    current_sign_in_ip
+    email
+    sign_in_count
+    created_at
+    updated_at
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
@@ -44,7 +46,7 @@ class UserDashboard < Administrate::BaseDashboard
     current_sign_in_at
     current_sign_in_ip
     email
-    encrypted_password
+    password
     last_sign_in_at
     last_sign_in_ip
     remember_created_at
@@ -59,17 +61,8 @@ class UserDashboard < Administrate::BaseDashboard
   # an array of attributes that will be displayed
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = %i[
-    comments
-    current_sign_in_at
-    current_sign_in_ip
     email
-    encrypted_password
-    last_sign_in_at
-    last_sign_in_ip
-    remember_created_at
-    reset_password_sent_at
-    reset_password_token
-    sign_in_count
+    password
   ].freeze
 
   # COLLECTION_FILTERS

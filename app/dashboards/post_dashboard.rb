@@ -11,11 +11,28 @@ class PostDashboard < Administrate::BaseDashboard
     id: Field::Number,
     classifications: Field::HasMany,
     plain_body: Field::Text,
-    rich_body: Field::Text,
     taxons: Field::HasMany,
     title: Field::String,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
+    rich_body: Field::SimpleMarkdown.with_options({
+      safe_links_only: true,
+      filter_html: true,
+      with_toc_data: true,
+      hard_wrap: true,
+      link_attributes: { rel: 'follow' },
+      autolink: true,
+      tables: true,
+      no_intra_emphasis: true,
+      strikethrough: true,
+      highlight: true,
+      space_after_headers: true,
+      easymde_options: {
+        placeholder: 'Type here...',
+        spell_checker: false,
+        hide_icons: %w[guide heading]
+      }
+    }),
   }.freeze
 
   # COLLECTION_ATTRIBUTES
@@ -25,9 +42,11 @@ class PostDashboard < Administrate::BaseDashboard
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = %i[
     id
-    classifications
     plain_body
-    rich_body
+    taxons
+    title
+    created_at
+    updated_at
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
@@ -47,11 +66,10 @@ class PostDashboard < Administrate::BaseDashboard
   # an array of attributes that will be displayed
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = %i[
-    classifications
+    title
     plain_body
     rich_body
     taxons
-    title
   ].freeze
 
   # COLLECTION_FILTERS
