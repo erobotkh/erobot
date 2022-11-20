@@ -10,9 +10,11 @@ class TeamDashboard < Administrate::BaseDashboard
   ATTRIBUTE_TYPES = {
     id: Field::Number,
     description: Field::String,
+    members: Field::HasMany,
     name: Field::String,
     parent: Field::BelongsTo,
     position: Field::Number,
+    socials: Field::HasMany,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
   }.freeze
@@ -25,6 +27,7 @@ class TeamDashboard < Administrate::BaseDashboard
   COLLECTION_ATTRIBUTES = %i[
     id
     description
+    members
     name
     parent
   ].freeze
@@ -34,9 +37,11 @@ class TeamDashboard < Administrate::BaseDashboard
   SHOW_PAGE_ATTRIBUTES = %i[
     id
     description
+    members
     name
     parent
     position
+    socials
     created_at
     updated_at
   ].freeze
@@ -46,9 +51,11 @@ class TeamDashboard < Administrate::BaseDashboard
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = %i[
     description
+    members
     name
     parent
     position
+    socials
   ].freeze
 
   # COLLECTION_FILTERS

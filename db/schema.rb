@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_20_061338) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_20_075222) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -32,6 +32,17 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_20_061338) do
     t.datetime "updated_at", null: false
     t.index ["commentable_type", "commentable_id"], name: "index_comments_on_commentable"
     t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
+  create_table "members", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.bigint "team_id", null: false
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["team_id"], name: "index_members_on_team_id"
+    t.index ["user_id"], name: "index_members_on_user_id"
   end
 
   create_table "oauth_access_grants", force: :cascade do |t|
@@ -74,6 +85,15 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_20_061338) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["uid"], name: "index_oauth_applications_on_uid", unique: true
+  end
+
+  create_table "organizations", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.integer "parent_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["parent_id"], name: "index_organizations_on_parent_id"
   end
 
   create_table "posts", force: :cascade do |t|
@@ -138,6 +158,20 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_20_061338) do
     t.index ["parent_id"], name: "index_teams_on_parent_id"
   end
 
+  create_table "timelines", force: :cascade do |t|
+    t.string "headline"
+    t.string "description"
+    t.string "timeline_type"
+    t.datetime "started_at"
+    t.datetime "ended_at"
+    t.bigint "member_id", null: false
+    t.bigint "organization_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["member_id"], name: "index_timelines_on_member_id"
+    t.index ["organization_id"], name: "index_timelines_on_organization_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -151,13 +185,18 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_20_061338) do
     t.string "last_sign_in_ip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "member_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "comments", "users"
+  add_foreign_key "members", "teams"
+  add_foreign_key "members", "users"
   add_foreign_key "oauth_access_grants", "oauth_applications", column: "application_id"
   add_foreign_key "oauth_access_tokens", "oauth_applications", column: "application_id"
   add_foreign_key "socials", "social_types"
   add_foreign_key "taxons", "taxonomies"
+  add_foreign_key "timelines", "members"
+  add_foreign_key "timelines", "organizations"
 end

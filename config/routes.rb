@@ -1,13 +1,16 @@
 Rails.application.routes.draw do
   namespace :admin do
-    resources :users
-    resources :taxonomies
-    resources :taxons
-    resources :posts
-    resources :teams
-    resources :socials
-    resources :social_types
     resources :comments
+    resources :members
+    resources :posts
+    resources :social_types
+    resources :socials
+    resources :taxons
+    resources :taxonomies
+    resources :teams
+    resources :timelines
+    resources :users
+    resources :organizations
     resources :classifications
 
     root to: "users#index"
