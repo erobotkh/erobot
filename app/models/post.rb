@@ -6,4 +6,9 @@ class Post < ApplicationRecord
     removed_classifications = classifications.where(taxon: taxon)
     removed_classifications.each &:remove_from_list
   end
+
+  def identifier
+    prefix = taxons.map(&:name).to_sentence
+    [prefix, title].to_sentence
+  end
 end

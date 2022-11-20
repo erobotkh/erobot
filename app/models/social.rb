@@ -3,7 +3,7 @@ class Social < ApplicationRecord
   belongs_to :social_type
   
   def launch_url
-    self.social_type.launch_strategy.gsub("{}", self.username)
+    social_type.launch_strategy.gsub("{}", username)
   end
 
   def identifier

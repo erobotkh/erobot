@@ -32,6 +32,7 @@ class SocialDashboard < Administrate::BaseDashboard
   COLLECTION_ATTRIBUTES = %i[
     id
     connectable
+    social_type
     first_name
     full_name
   ].freeze
