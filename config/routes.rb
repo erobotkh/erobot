@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     resources :taxons
     resources :posts
     resources :teams
+    resources :members
     resources :socials
     resources :social_types
     resources :comments
