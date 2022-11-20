@@ -15,8 +15,8 @@ module Api
         social.social_type.name
       end
 
-      attribute :lunch_url do | social |
-        social.social_type.launch_strategy.gsub("{}", social.username)
+      attribute :launch_url do | social |
+        social.launch_url
       end
     end
   end

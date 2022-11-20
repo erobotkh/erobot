@@ -3,7 +3,7 @@ class CreateTimelines < ActiveRecord::Migration[7.0]
     create_table :timelines do |t|
       t.string :headline
       t.string :description
-      t.string :type
+      t.string :timeline_type
 
       t.datetime :started_at
       t.datetime :ended_at

@@ -15,7 +15,7 @@ class TimelineDashboard < Administrate::BaseDashboard
     member: Field::BelongsTo,
     organization: Field::BelongsTo,
     started_at: Field::DateTime,
-    type: Field::Select.with_options(searchable: false, collection: ->(field) { field.resource.class.send(field.attribute.to_s.pluralize).keys }),
+    timeline_type: Field::Select.with_options(searchable: false, collection: ->(field) { field.resource.class.send(field.attribute.to_s.pluralize).keys }),
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
   }.freeze
@@ -42,7 +42,7 @@ class TimelineDashboard < Administrate::BaseDashboard
     member
     organization
     started_at
-    type
+    timeline_type
     created_at
     updated_at
   ].freeze
@@ -57,7 +57,7 @@ class TimelineDashboard < Administrate::BaseDashboard
     member
     organization
     started_at
-    type
+    timeline_type
   ].freeze
 
   # COLLECTION_FILTERS

@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     resources :timelines
     resources :users
     resources :organizations
+    resources :classifications
 
     root to: "users#index"
   end

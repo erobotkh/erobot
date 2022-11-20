@@ -11,8 +11,8 @@ class OrganizationDashboard < Administrate::BaseDashboard
     id: Field::Number,
     description: Field::String,
     name: Field::String,
+    parent: Field::BelongsTo,
     socials: Field::HasMany,
-    type: Field::String,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
   }.freeze
@@ -26,7 +26,7 @@ class OrganizationDashboard < Administrate::BaseDashboard
     id
     description
     name
-    socials
+    parent
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
@@ -35,8 +35,8 @@ class OrganizationDashboard < Administrate::BaseDashboard
     id
     description
     name
+    parent
     socials
-    type
     created_at
     updated_at
   ].freeze
@@ -47,8 +47,8 @@ class OrganizationDashboard < Administrate::BaseDashboard
   FORM_ATTRIBUTES = %i[
     description
     name
+    parent
     socials
-    type
   ].freeze
 
   # COLLECTION_FILTERS

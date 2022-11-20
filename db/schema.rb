@@ -38,7 +38,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_20_075222) do
     t.string "first_name"
     t.string "last_name"
     t.bigint "team_id", null: false
-    t.bigint "user_id", null: false
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["team_id"], name: "index_members_on_team_id"
@@ -89,10 +89,11 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_20_075222) do
 
   create_table "organizations", force: :cascade do |t|
     t.string "name"
-    t.string "type"
     t.string "description"
+    t.integer "parent_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["parent_id"], name: "index_organizations_on_parent_id"
   end
 
   create_table "posts", force: :cascade do |t|
@@ -160,7 +161,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_20_075222) do
   create_table "timelines", force: :cascade do |t|
     t.string "headline"
     t.string "description"
-    t.string "type"
+    t.string "timeline_type"
     t.datetime "started_at"
     t.datetime "ended_at"
     t.bigint "member_id", null: false

@@ -15,3 +15,8 @@ rails generate model Organization name:string type:string description:string
 
 rails generate model Timeline headline:string description:string type:string started_at:datetime ended_at:datetime member:references organization:references
 ```
+
+Generate decorator.
+```
+bin/rails generate decorator Administrate::BaseDashboard
+```
