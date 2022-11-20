@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_24_173715) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_20_061338) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -84,6 +84,28 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_24_173715) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "social_types", force: :cascade do |t|
+    t.string "name"
+    t.string "url"
+    t.string "launch_strategy"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "socials", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.string "full_name"
+    t.string "username"
+    t.string "connectable_type"
+    t.bigint "connectable_id"
+    t.bigint "social_type_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["connectable_type", "connectable_id"], name: "index_socials_on_connectable"
+    t.index ["social_type_id"], name: "index_socials_on_social_type_id"
+  end
+
   create_table "taxonomies", force: :cascade do |t|
     t.string "name"
     t.string "taxonomy_type"
@@ -103,6 +125,17 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_24_173715) do
     t.index ["name", "taxonomy_id"], name: "index_taxons_on_name_and_taxonomy_id", unique: true
     t.index ["parent_id"], name: "index_taxons_on_parent_id"
     t.index ["taxonomy_id"], name: "index_taxons_on_taxonomy_id"
+  end
+
+  create_table "teams", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.integer "position"
+    t.integer "parent_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name", "parent_id"], name: "index_teams_on_name_and_parent_id", unique: true
+    t.index ["parent_id"], name: "index_teams_on_parent_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -125,5 +158,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_24_173715) do
   add_foreign_key "comments", "users"
   add_foreign_key "oauth_access_grants", "oauth_applications", column: "application_id"
   add_foreign_key "oauth_access_tokens", "oauth_applications", column: "application_id"
+  add_foreign_key "socials", "social_types"
   add_foreign_key "taxons", "taxonomies"
 end

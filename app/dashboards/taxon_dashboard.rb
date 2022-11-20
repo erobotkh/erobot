@@ -11,7 +11,7 @@ class TaxonDashboard < Administrate::BaseDashboard
     id: Field::Number,
     classifications: Field::HasMany,
     name: Field::String,
-    parent_id: Field::Number,
+    parent: Field::BelongsTo,
     position: Field::Number,
     posts: Field::HasMany,
     taxonomy: Field::BelongsTo,
@@ -26,11 +26,9 @@ class TaxonDashboard < Administrate::BaseDashboard
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = %i[
     id
+    classifications
     name
-    parent_id
-    position
-    created_at
-    updated_at
+    parent
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
@@ -39,7 +37,7 @@ class TaxonDashboard < Administrate::BaseDashboard
     id
     classifications
     name
-    parent_id
+    parent
     position
     posts
     taxonomy
@@ -53,7 +51,7 @@ class TaxonDashboard < Administrate::BaseDashboard
   FORM_ATTRIBUTES = %i[
     classifications
     name
-    parent_id
+    parent
     position
     posts
     taxonomy
