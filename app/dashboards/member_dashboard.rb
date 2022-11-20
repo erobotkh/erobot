@@ -13,6 +13,7 @@ class MemberDashboard < Administrate::BaseDashboard
     last_name: Field::String,
     socials: Field::HasMany,
     team: Field::BelongsTo,
+    timelines: Field::HasMany,
     user: Field::BelongsTo,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
@@ -38,6 +39,7 @@ class MemberDashboard < Administrate::BaseDashboard
     last_name
     socials
     team
+    timelines
     user
     created_at
     updated_at
@@ -51,6 +53,7 @@ class MemberDashboard < Administrate::BaseDashboard
     last_name
     socials
     team
+    timelines
     user
   ].freeze
 

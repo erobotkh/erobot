@@ -1,6 +1,6 @@
 require "administrate/base_dashboard"
 
-class ClassificationDashboard < Administrate::BaseDashboard
+class TimelineDashboard < Administrate::BaseDashboard
   # ATTRIBUTE_TYPES
   # a hash that describes the type of each of the model's fields.
   #
@@ -9,10 +9,13 @@ class ClassificationDashboard < Administrate::BaseDashboard
   # on pages throughout the dashboard.
   ATTRIBUTE_TYPES = {
     id: Field::Number,
-    position: Field::Number,
-    post: Field::BelongsTo,
-    preference: Field::String.with_options(searchable: false),
-    taxon: Field::BelongsTo,
+    description: Field::String,
+    ended_at: Field::DateTime,
+    headline: Field::String,
+    member: Field::BelongsTo,
+    organization: Field::BelongsTo,
+    started_at: Field::DateTime,
+    type: Field::Select.with_options(searchable: false, collection: ->(field) { field.resource.class.send(field.attribute.to_s.pluralize).keys }),
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
   }.freeze
@@ -24,19 +27,22 @@ class ClassificationDashboard < Administrate::BaseDashboard
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = %i[
     id
-    position
-    post
-    preference
+    description
+    ended_at
+    headline
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
   # an array of attributes that will be displayed on the model's show page.
   SHOW_PAGE_ATTRIBUTES = %i[
     id
-    position
-    post
-    preference
-    taxon
+    description
+    ended_at
+    headline
+    member
+    organization
+    started_at
+    type
     created_at
     updated_at
   ].freeze
@@ -45,10 +51,13 @@ class ClassificationDashboard < Administrate::BaseDashboard
   # an array of attributes that will be displayed
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = %i[
-    position
-    post
-    preference
-    taxon
+    description
+    ended_at
+    headline
+    member
+    organization
+    started_at
+    type
   ].freeze
 
   # COLLECTION_FILTERS
@@ -63,10 +72,10 @@ class ClassificationDashboard < Administrate::BaseDashboard
   #   }.freeze
   COLLECTION_FILTERS = {}.freeze
 
-  # Overwrite this method to customize how classifications are displayed
+  # Overwrite this method to customize how timelines are displayed
   # across all pages of the admin dashboard.
   #
-  # def display_resource(classification)
-  #   "Classification ##{classification.id}"
+  # def display_resource(timeline)
+  #   "Timeline ##{timeline.id}"
   # end
 end
