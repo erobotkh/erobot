@@ -6,5 +6,5 @@ For v1 admin, we use [administrate](https://administrate-demo-prerelease.herokua
 - Demo: http://127.0.0.1:3000/admin
 - To generate, execute command below:
 ```s
-bin/srails generate administrate:install
+bin/rails generate administrate:install
 ```
