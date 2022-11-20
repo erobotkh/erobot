@@ -70,6 +70,6 @@ class CommentDashboard < Administrate::BaseDashboard
   # across all pages of the admin dashboard.
   #
   def display_resource(comment)
-    "##{comment.id} by #{comment.user.id} on #{comment.commentable.type}:#{comment.commentable.id}"
+    "##{comment.id} by #{comment.user.id} on #{comment.commentable.class}:#{comment.commentable.id}"
   end
 end
