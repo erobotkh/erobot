@@ -7,7 +7,12 @@ module Api
       
       # resource
       def show
-        json = resource_serializer.new(resource).serializable_hash
+        json = resource_serializer.new(
+          resource,
+          include: resource_includes,
+          # fields: sparse_fields
+        ).serializable_hash
+
         render json: json
       end
       
