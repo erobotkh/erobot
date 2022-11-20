@@ -4,7 +4,7 @@ module Api
       skip_before_action :doorkeeper_authorize!
 
       def collection
-        Timeline.where(id: params[:id], member_id: member_id).page(page)
+        Timeline.where(member_id: member_id).page(page)
       end
 
       def collection_serializer
