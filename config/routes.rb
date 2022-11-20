@@ -4,6 +4,9 @@ Rails.application.routes.draw do
     resources :taxonomies
     resources :taxons
     resources :posts
+    resources :teams
+    resources :socials
+    resources :social_types
     resources :comments
     resources :classifications
 

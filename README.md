@@ -7,4 +7,7 @@ For v1 admin, we use [administrate](https://administrate-demo-prerelease.herokua
 - To generate, execute command below:
 ```s
 bin/rails generate administrate:install
+
+# or
+rails generate administrate:dashboard Foo
 ```
