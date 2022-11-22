@@ -1,25 +1,17 @@
 import { createApp } from "vue";
+import App from "../app.vue";
 import PrimeVue from "primevue/config";
 import InputText from "primevue/inputtext";
 import Toast from "primevue/toast";
 import Button from "primevue/button";
-import Menubar from "primevue/menubar";
-
-import App from "../app.vue";
-import EMenubar from "../views/components/e_menubar.vue";
 
 document.addEventListener("DOMContentLoaded", () => {
   const app = createApp(App);
   app.use(PrimeVue);
 
-  // PRIME
   app.component("InputText", InputText);
   app.component("Toast", Toast);
   app.component("Button", Button);
-  app.component("Menubar", Menubar);
-
-  // LOCAL
-  app.component("EMenubar", EMenubar);
 
   app.mount("#app");
 });
