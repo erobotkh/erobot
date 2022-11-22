@@ -61,9 +61,6 @@ gem "webpacker"
 gem 'doorkeeper'
 gem 'devise'
 
-# Initiating multiple processes at the same time. eg. run vue & rails
-gem 'foreman'
-
 # Acts As List
 gem 'acts_as_list'
 
