@@ -1,3 +1,4 @@
+# Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 Rails.application.routes.draw do
   namespace :admin do
     resources :comments
@@ -23,8 +24,5 @@ Rails.application.routes.draw do
   draw(:api)
   draw(:frontend)
 
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-
-  # Defines the root path route ("/")
-  # root "articles#index"
+  root "frontend/home#index"
 end

@@ -1,3 +1,5 @@
 Rails.application.routes.draw do
-  get 'landing/index'
+  scope :module => 'frontend' do
+    get 'home/index'
+  end
 end
