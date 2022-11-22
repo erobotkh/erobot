@@ -316,10 +316,13 @@ DEPENDENCIES
   bootsnap
   capybara
   debug
+<<<<<<< HEAD
   devise
   doorkeeper
   factory_bot_rails
   foreman
+=======
+>>>>>>> parent of 7da0436 (init vue webpack)
   importmap-rails
   jbuilder
   jsonapi-serializer
