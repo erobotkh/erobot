@@ -1,5 +1,3 @@
 Rails.application.routes.draw do
-  scope :module => 'frontend' do
-    get 'home/index'
-  end
+  get 'landing/index'
 end

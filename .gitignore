@@ -42,6 +42,3 @@ yarn-debug.log*
 
 # Credential
 .env
-
-/app/assets/builds/*
-!/app/assets/builds/.keep
