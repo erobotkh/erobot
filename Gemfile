@@ -36,6 +36,12 @@ gem "redis", "~> 4.0"
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 # gem "bcrypt", "~> 3.1.7"
 
+# Initiating multiple processes at the same time. eg. run vue & rails
+# gem 'foreman'
+
+# CSS framework
+gem 'tailwindcss-rails'
+
 # JSON:API
 gem 'jsonapi-serializer'
 
@@ -53,9 +59,6 @@ gem "bootsnap", require: false
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
-
-# Webpacker
-gem "webpacker"
 
 # Authentication
 gem 'doorkeeper'
